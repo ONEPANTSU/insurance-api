@@ -10,14 +10,12 @@ from src.rate.schemas import Rate
 from src.rate.text.details import DETAILS
 
 
-@logger.catch
 def get_all_rates_data() -> dict:
     with open(RATES_PATH, "r") as rates_json:
         data = json.load(rates_json)
     return data
 
 
-@logger.catch
 def get_rates_by_date_data(date: datetime.date) -> List[dict]:
     with open(RATES_PATH, "r") as rates_json:
         data = json.load(rates_json)
@@ -27,7 +25,6 @@ def get_rates_by_date_data(date: datetime.date) -> List[dict]:
         return None
 
 
-@logger.catch
 def get_rate_data(date: str, cargo_type: str) -> Optional[float]:
     with open(RATES_PATH, "r") as rates_json:
         data = json.load(rates_json)
@@ -39,14 +36,12 @@ def get_rate_data(date: str, cargo_type: str) -> Optional[float]:
     return None
 
 
-@logger.catch
 class UpdateRateMode(Enum):
     UPDATE = 0
     ADD = 1
     EDIT = 2
 
 
-@logger.catch
 def update_rate_in_file(
     rate: Rate, mode: UpdateRateMode = UpdateRateMode.UPDATE
 ) -> Optional[str]:
@@ -80,7 +75,6 @@ def update_rate_in_file(
         json.dump(data, rates_json)
 
 
-@logger.catch
 def delete_rates_from_file(date: datetime.date) -> Optional[str]:
     with open(RATES_PATH, "r") as rates_json:
         data = json.load(rates_json)
@@ -92,7 +86,6 @@ def delete_rates_from_file(date: datetime.date) -> Optional[str]:
         return DETAILS["rates_are_not_found"].format(date=str(date))
 
 
-@logger.catch
 def delete_rate_from_file(date: datetime.date, cargo_type: str) -> Optional[str]:
     with open(RATES_PATH, "r") as rates_json:
         data = json.load(rates_json)

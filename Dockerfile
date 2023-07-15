@@ -12,5 +12,4 @@ COPY . .
 
 RUN chmod a+x docker/*.sh
 
-CMD gunicorn src.main:app --bind=0.0.0.0:8000
 

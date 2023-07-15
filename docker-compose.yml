@@ -22,4 +22,4 @@ services:
       - 8888:8000
     depends_on:
       - db
-    command: ["/insurance_app/docker/migrations_upgrade.sh"]
+    command: ["/insurance_app/docker/start_app.sh"]
