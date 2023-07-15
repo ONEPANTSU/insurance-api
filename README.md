@@ -38,7 +38,7 @@ By default, the FastAPI application uses `8888`.
 ```
 git clone https://github.com/ONEPANTSU/InsuranceFastAPI.git
 ```
-2. Create environment file `.env-deploy` in the root directory and fill it with the following variables:
+2. Create an environment file `.env-deploy` in the root directory and fill it with the following variables:
 ```python
 #   Example of the environment file
 
@@ -52,7 +52,7 @@ POSTGRES_DB="insurance"
 POSTGRES_USER="postgres"
 POSTGRES_PASSWORD="postgres"
 ```
-3. Build docker-compose file:
+3. Build the docker-compose file:
 ```
 docker-compose build
 ```
@@ -60,8 +60,8 @@ docker-compose build
 ```
 docker-compose up
 ```
-5. The API will be able by link: `http://<IP>:<PORT>`
-6. The Swagger will be able by link: `http://<IP>:<PORT>/docs`
+5. The API will be able by the link: `http://<IP>:<PORT>`
+6. The Swagger will be able by the link: `http://<IP>:<PORT>/docs`
 
 
 ## Technologies
