@@ -1,0 +1,25 @@
+version: "3.7"
+
+services:
+
+  db:
+    image: postgres:15
+    container_name: db_app
+    command:
+      -p 5435
+    expose:
+      - 5435
+    env_file:
+      - .env-deploy
+
+  app:
+    build:
+      context: .
+    container_name: insurance_app
+    env_file:
+      - .env-deploy
+    ports:
+      - 8888:8000
+    depends_on:
+      - db
+    command: ["/insurance_app/docker/migrations_upgrade.sh"]

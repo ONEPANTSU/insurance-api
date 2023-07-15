@@ -1,7 +1,8 @@
 import datetime
 import json
-from enum import Enum
 from typing import List, Optional, Union
+
+from loguru import logger
 
 from src.config import RATES_PATH
 from src.insurance.models import Insurance_History
@@ -13,10 +14,12 @@ from src.insurance.schemas import (
 )
 
 
+@logger.catch
 def get_model_from_schema(schema: InsuranceHistoryCreate) -> Insurance_History:
     return Insurance_History().update_from_dict(dict(schema))
 
 
+@logger.catch
 def get_schema_from_model(
     model: Insurance_History, schema_type: SchemasTypes
 ) -> Union[InsuranceHistoryCreate, InsuranceHistoryRead, InsuranceHistoryUpdate,]:
@@ -28,6 +31,7 @@ def get_schema_from_model(
         return InsuranceHistoryUpdate.from_model(model=model)
 
 
+@logger.catch
 def get_schemas_from_models(
     models: List[Insurance_History], schemas_type: SchemasTypes
 ) -> List[Union[InsuranceHistoryCreate, InsuranceHistoryRead, InsuranceHistoryUpdate,]]:
@@ -39,6 +43,7 @@ def get_schemas_from_models(
         return [InsuranceHistoryUpdate.from_model(model=model) for model in models]
 
 
+@logger.catch
 async def insurance_request_handler(
     declared_price: float, date: datetime.date, cargo_type: type
 ) -> Optional[InsuranceHistoryCreate]:
@@ -65,6 +70,7 @@ async def insurance_request_handler(
     return None
 
 
+@logger.catch
 async def get_insurance_history_data() -> Optional[List[InsuranceHistoryRead]]:
     models = await Insurance_History.all()
     if len(models) != 0:

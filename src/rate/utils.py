@@ -10,12 +10,14 @@ from src.rate.schemas import Rate
 from src.rate.text.details import DETAILS
 
 
+@logger.catch
 def get_all_rates_data() -> dict:
     with open(RATES_PATH, "r") as rates_json:
         data = json.load(rates_json)
     return data
 
 
+@logger.catch
 def get_rates_by_date_data(date: datetime.date) -> List[dict]:
     with open(RATES_PATH, "r") as rates_json:
         data = json.load(rates_json)
@@ -25,6 +27,7 @@ def get_rates_by_date_data(date: datetime.date) -> List[dict]:
         return None
 
 
+@logger.catch
 def get_rate_data(date: str, cargo_type: str) -> Optional[float]:
     with open(RATES_PATH, "r") as rates_json:
         data = json.load(rates_json)
@@ -36,6 +39,7 @@ def get_rate_data(date: str, cargo_type: str) -> Optional[float]:
     return None
 
 
+@logger.catch
 class UpdateRateMode(Enum):
     UPDATE = 0
     ADD = 1
